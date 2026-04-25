@@ -1,0 +1,107 @@
+/+ Here is the all the styling for woocommerce satched plugin */
+/* General Wrapper */
+.linkyne-swatches-wrapper {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Image Type: Grid Layout (6 per row) */
+.linkyne-swatches-wrapper.type-image {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.linkyne-swatch.swatch-image {
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent; /* Hidden by default to prevent layout shift */
+    padding: 4px;
+    transition: all 0.2s ease;
+}
+
+.linkyne-swatch.swatch-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid rgba(0,0,0,0);
+    margin-bottom: 8px;
+    background: transparent;
+	padding: 10px;
+}
+
+.linkyne-swatch.swatch-image .swatch-label {
+    display: block;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.2;
+	white-space: normal !important; 
+    word-break: normal !important; 
+    overflow-wrap: break-word !important;
+}
+
+.linkyne-swatch.swatch-image.selected {
+    background-color: #f7f7f7;
+    border: 2px solid #000;
+}
+
+/* Button Type: Flex/Grid hybrid for stretching and wrapping */
+.linkyne-swatches-wrapper.type-button {
+    display: grid;
+    /* Auto-fit creates columns. Minmax ensures they stretch but break if too small */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.linkyne-swatch.swatch-button {
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
+    background-color: transparent;
+    padding: 12px 15px;
+    text-align: center;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* Prevent text wrap inside button */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Button Selected State */
+.linkyne-swatch.swatch-button.selected {
+    border: 2px solid #000;
+    font-weight: 600;
+}
+
+/* Out of Stock / Disabled State (Applies to both) */
+.linkyne-swatch.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.linkyne-swatch.disabled::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top right, transparent calc(50% - 1px), #999, transparent calc(50% + 1px));
+    pointer-events: none; /* Let tooltips still work */
+}
+
+/* Tooltip for Disabled Items */
+.linkyne-swatch.disabled:hover::before {
+    content: "Temporarily Out of Stock";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    z-index: 10;
+}
